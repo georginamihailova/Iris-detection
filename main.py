@@ -63,7 +63,7 @@ def find_pupil_size(img):
 
     # Check if the aspect ratio of the bounding rectangle is approximately 1
     aspect_ratio = w / h
-    if aspect_ratio < 1.2 and aspect_ratio > 0.8:
+    if 1.2 > aspect_ratio > 0.8:
         # Calculate the center and diameter of the pupil
         center = (x + w // 2, y + h // 2)
         diameter = min(w, h)
@@ -71,13 +71,16 @@ def find_pupil_size(img):
         # Draw the circle on the image
         cv2.circle(img, center, diameter // 2, (0, 255, 0), 2)
 
-    # Show the image
-    cv2.imshow("Detected Pupil", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        # Print the diameter of the pupil
+        if diameter is not None:
+            print("Diameter of the pupil:", diameter)
 
-    # Print the diameter of the pupil
-    print("Diameter of the pupil:", diameter)
+        # Show the image
+        cv2.imshow("Detected Pupil", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    else:
+        print("Pupil not found!")
 
 
 def prepare_images(image):
@@ -180,9 +183,8 @@ def detect_eyes(img):
     else:
         return ""
 
-
-img1 = cv2.imread('iris4.png')
-img2 = cv2.imread('iris4.png')
+img1 = cv2.imread('images/iris4.png')
+img2 = cv2.imread('images/iris4.png')
 
 eye1 = detect_eyes(img1)
 eye2 = detect_eyes(img2)
