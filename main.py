@@ -94,6 +94,7 @@ def detect_and_compare_irises_orb(iris1, iris2):
     gray_iris1 = prepare_images(iris1)
     gray_iris2 = prepare_images(iris2)
 
+
     orb = cv2.ORB_create()
 
     # Detect keypoints and compute ORB descriptors for both images
@@ -184,7 +185,7 @@ def detect_eyes(img):
         return ""
 
 img1 = cv2.imread('images/iris4.png')
-img2 = cv2.imread('images/iris4.png')
+img2 = cv2.imread('images/copy.png')
 
 eye1 = detect_eyes(img1)
 eye2 = detect_eyes(img2)
